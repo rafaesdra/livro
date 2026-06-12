@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>O Mais Belo dos Castelos</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div id="book"></div>
+<script src="https://cdn.jsdelivr.net/npm/page-flip/dist/js/page-flip.browser.min.js"></script>
+<script>
+const book = document.getElementById('book');
+const imageCount = 28;
+for (let i = 1; i <= imageCount; i += 1) {
+  const page = document.createElement('div');
+  page.className = 'page';
+
+  const content = document.createElement('div');
+  content.className = 'page-content';
+
+  const image = document.createElement('img');
+  image.className = 'page-image';
+  image.src = `imagens/${i}.png`;
+  image.alt = `Imagem ${i}`;
+
+  content.appendChild(image);
+  page.appendChild(content);
+  book.appendChild(page);
+}
+
+const pageFlip = new St.PageFlip(book, {
+ width: 400,
+ height: 560,
+ showCover: true,
+ size: 'stretch',
+ mobileScrollSupport: false,
+});
+pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+</script>
+</body></html>

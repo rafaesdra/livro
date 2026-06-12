@@ -1,0 +1,74 @@
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #f8f1e3 0%, #dfc9a5 50%, #d8c6a4 100%);
+  font-family: Georgia, serif;
+}
+
+#book {
+  width: 420px;
+  height: 580px;
+  max-width: 100%;
+}
+
+.page {
+  background: #fbf6ec;
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+}
+
+.page-content {
+  height: 100%;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.cover-content {
+  flex-direction: column;
+}
+
+.cover-title {
+  max-width: 280px;
+  padding: 36px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+}
+
+.cover-title h1 {
+  margin: 0 0 18px;
+  font-size: 32px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+.cover-title p,
+.cover-title span {
+  margin: 0;
+  color: #5e4a34;
+}
+
+.cover-title p {
+  font-style: italic;
+  margin-bottom: 16px;
+}
+
+.page-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
