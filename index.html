@@ -8,30 +8,96 @@
 <script>
 const book = document.getElementById('book');
 const imageCount = 28;
-for (let i = 1; i <= imageCount; i += 1) {
-  const page = document.createElement('div');
-  page.className = 'page';
+const mobileBreakpoint = 720;
+const isMobile = window.innerWidth <= mobileBreakpoint;
 
-  const content = document.createElement('div');
-  content.className = 'page-content';
-
-  const image = document.createElement('img');
-  image.className = 'page-image';
-  image.src = `imagens/${i}.png`;
-  image.alt = `Imagem ${i}`;
-
-  content.appendChild(image);
-  page.appendChild(content);
-  book.appendChild(page);
+if (isMobile) {
+  buildMobileReader();
+} else {
+  buildFlipBook();
 }
 
-const pageFlip = new St.PageFlip(book, {
- width: 400,
- height: 560,
- showCover: true,
- size: 'stretch',
- mobileScrollSupport: false,
-});
-pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+function buildFlipBook() {
+  for (let i = 1; i <= imageCount; i += 1) {
+    const page = document.createElement('div');
+    page.className = 'page';
+
+    const content = document.createElement('div');
+    content.className = 'page-content';
+
+    const image = document.createElement('img');
+    image.className = 'page-image';
+    image.src = `imagens/${i}.png`;
+    image.alt = `Imagem ${i}`;
+
+    content.appendChild(image);
+    page.appendChild(content);
+    book.appendChild(page);
+  }
+
+  const pageFlip = new St.PageFlip(book, {
+    width: 400,
+    height: 560,
+    showCover: true,
+    size: 'stretch',
+    mobileScrollSupport: false,
+  });
+
+  pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+}
+
+function buildMobileReader() {
+  book.className = 'mobile-reader';
+
+  const mobileImage = document.createElement('img');
+  mobileImage.className = 'mobile-image';
+  mobileImage.loading = 'lazy';
+
+  const controls = document.createElement('div');
+  controls.className = 'mobile-controls';
+
+  const prevButton = document.createElement('button');
+  prevButton.type = 'button';
+  prevButton.className = 'mobile-button mobile-button-prev';
+  prevButton.textContent = '◀';
+  prevButton.setAttribute('aria-label', 'Página anterior');
+
+  const nextButton = document.createElement('button');
+  nextButton.type = 'button';
+  nextButton.className = 'mobile-button mobile-button-next';
+  nextButton.textContent = '▶';
+  nextButton.setAttribute('aria-label', 'Próxima página');
+
+  const pageIndicator = document.createElement('div');
+  pageIndicator.className = 'mobile-page-indicator';
+
+  let currentPage = 1;
+
+  function updateMobilePage() {
+    mobileImage.src = `imagens/${currentPage}.png`;
+    mobileImage.alt = `Imagem ${currentPage}`;
+    pageIndicator.textContent = `${currentPage} / ${imageCount}`;
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === imageCount;
+  }
+
+  prevButton.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage -= 1;
+      updateMobilePage();
+    }
+  });
+
+  nextButton.addEventListener('click', () => {
+    if (currentPage < imageCount) {
+      currentPage += 1;
+      updateMobilePage();
+    }
+  });
+
+  controls.append(prevButton, nextButton);
+  book.append(mobileImage, controls, pageIndicator);
+  updateMobilePage();
+}
 </script>
 </body></html>
