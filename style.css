@@ -24,8 +24,8 @@ body::before {
 }
 
 #book {
-  width: min(420px, 92vw);
-  height: min(580px, 92vh);
+  width: 420px;
+  height: 580px;
   max-width: 100%;
   position: relative;
   overflow: visible;
@@ -103,31 +103,4 @@ body::before {
   box-shadow: 0 22px 48px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 700px) {
-  body {
-    padding: 18px 0;
-  }
-
-  #book {
-    width: 96vw;
-    height: calc(96vw * 0.65);
-  }
-
-  #book::before {
-    left: -14px;
-    width: 22px;
-    top: 12%;
-    bottom: 12%;
-  }
-
-  .page {
-    border-radius: 14px;
-    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
-  }
-
-  .page-image {
-    border-radius: 14px;
-    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.18);
-  }
-}
 

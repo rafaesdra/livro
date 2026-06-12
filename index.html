@@ -25,13 +25,9 @@ for (let i = 1; i <= imageCount; i += 1) {
   book.appendChild(page);
 }
 
-const isNarrow = window.innerWidth <= 700;
-const bookWidth = isNarrow ? Math.min(window.innerWidth * 0.96, 420) : 400;
-const bookHeight = isNarrow ? Math.max(bookWidth * 0.58, 260) : 560;
-
 const pageFlip = new St.PageFlip(book, {
- width: bookWidth,
- height: bookHeight,
+ width: 400,
+ height: 560,
  showCover: true,
  size: 'stretch',
  mobileScrollSupport: false,
